@@ -52,7 +52,9 @@ const context = {
     return result;
 
     // Annotation: 
-    // Here, object wrappers temporarily make the "el" element an "object" that determines the context of the event ("click"). The addEventListener method is being called on "el", which means the value of "this" is "el".  The value of "this" is not "car" because in the getInfo key, "this" doesn't have anything to point to until some kind of context is created (in this case, the addEventListener method on the DOM element).
+    // The addEventListener method is being called on "el", which means the value of "this" is "el". The value of "this" is not "car" because in the getInfo key, "this" doesn't have anything to point to until some kind of context is created (in this case, the addEventListener method on the DOM element).
+
+    //THE METHOD HERE is addEventListener.
   },
 
   exerciseD() {
@@ -73,7 +75,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // The value of "this" is the default value of the global object because "this" is not bound to a specific instance of the dog object. 
+    // The value of "this" is the default value of the global object because "this" is not bound to a specific instance of the dog object. The nested function prevents "this" from accessing the dog object. 
   },
 
   exerciseE() {
@@ -112,7 +114,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // The value of "this" refers to a new instance of the Hero object. 
+    // The value of "this" refers to a new instance of the Hero object because its being called on "storm," an instance of Hero. 
   },
 
   exerciseG() {
@@ -140,7 +142,9 @@ const context = {
     return result;
 
     // Annotation: 
-    // Because "this" is nested in a function, it cannot see outside the function to the restart() method in the Game class. The "monopoly" instance of the game class no longer exists by the time the setTimeout function is invoked. 
+    // Because "this" is nested in a function, it cannot see outside the function to the restart() method in the Game class. 
+
+    //The 1000 is a "wait" argument. 
   },
 
   exerciseH() {
@@ -160,7 +164,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // We're calling method() on this instance of the "obj" object and we're returning this to the method property within the object. 
+    // The arrowFunction() is declared using ES6, which means it's binding "this" to the object that calls arrowFunction(), so in this case arrowFunction() is being called on obj. 
   },
 
   exerciseI() {  
@@ -183,7 +187,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // "This" has a value of "poets" because the map method returns the array. 
+    // "This" has a value of "poets" because the map method returns the array, which binds "this" to "poets". 
   },
 
   exerciseJ() {
@@ -211,7 +215,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment.
+    // Because we're using ES6 syntax instead of ES5, "this" isn't bound to the object and instead defaults to the global window object. 
   }
 
 };
