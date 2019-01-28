@@ -6,28 +6,28 @@ const scope = {
 
     function changePerson() {
       if (personA === 'Paul') {
-        person = 'CardiB'; //automatically declared with var, so it's hoisted
+        person = 'CardiB';
         beautifyPerson();
       }
 
       function beautifyPerson() {
-        // Log A: personB Ben
+        // Log A: personB 
         
         if (personB.includes('B')) {
           personB = person;
           personC = personB;
-          // Log B: personC Cardi B
+          // Log B: personC
         }
       }
 
       personC = personA;
 
-      // Log C: personB Cardi B
+      // Log C: personB
     }
 
     changePerson();
 
-    // Log D: personC Paul
+    // Log D: personC
 
     const result = [
       {'A': 'Ben'},
@@ -37,7 +37,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Log A is Ben because the person B variable is globally scoped as Ben and hasn't been changed. Log B is CardiB because personB was reassigned to person, which was assigned a value of 'CardiB'. Log C is 'CardiB' because personB was never reassigned. Log D is 'Paul' because personA was declared with a value of 'Paul' and has not been changed. 
+    // Log A is 'Ben' because the 'personB' variable is globally scoped as 'Ben' and hasn't been reassigned. Log B is 'CardiB' because 'personB' was reassigned to 'person', which was declared as a varaible on line 9 and assigned a value of 'CardiB'. Because 'person' was not declared with const, var, or let, the interpreter gives it a default declaration of var, which means 'person' and its value are hoisted out of the block statement and functionally scoped. Log C is 'CardiB' because 'personB' was not reassigned. Log D is 'Paul' because 'personC' was reassigned to 'personA', which is globally scoped and was declared with a value of 'Paul' that has not been changed. 
   },
 
   exerciseB() {
@@ -50,17 +50,17 @@ const scope = {
         let number = 28;
       }
 
-      // Log A: number 75 
+      // Log A: number 
 
       function newNumber() {
         number = 64;
 
-        // Log B: number 64
+        // Log B: number
       }
 
       newNumber();
 
-      // Log C: number 64
+      // Log C: number
     }
 
     numberFunction();
@@ -76,7 +76,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Log A has a value of 75 because the number variable is functionally scoped inside numberFunction. Log B is 64 because the 'number' at line 50 has been reassigned to 64. Log C is also 64 because the variable 'number' at line 50 has been reassigned to 64. Log D is 30 because the variable 'number' is globally scoped. 
+    // Log A has a value of 75 because the 'number' variable is functionally scoped inside numberFunction, and the block statement declares a new variable 'number' rather than reassigning the value of the functionally scoped variable. Log B is 64 because the functionally scoped 'number' declared at line 50 has been reassigned to 64. Log C is also 64 because the variable 'number' at line 50 has been reassigned to 64. Log D is 30 because the variable 'number' is globally scoped and has not been reassigned. 
   },
 
   exerciseC() {
@@ -89,22 +89,22 @@ const scope = {
         let greeting = 'Howdy';
       }
 
-      // Log A: greeting Yo because the greeting variable at line 89 is block scoped
+      // Log A: greeting
 
       function newPhrase() {
         greeting = 'Hey';
 
-        // Log B: greeting Hey because we're reassigning the greeting variable at line 86 to a value of Hey. 
+        // Log B: greeting 
       }
 
       newPhrase();
 
-      // Log C: greeting Hey because we reassigned it
+      // Log C: greeting
     }
 
     greetingFunction();
 
-    // Log D: greeting is Hello because that's global 
+    // Log D: greeting
 
     const result = [
       {'A' : 'Yo' },
@@ -114,7 +114,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Log A, the variable "greeting" has a value of "Yo" because the "greeting" variable at line 89 is block scoped, so the value of the variable greeting is functionally scoped at line 94 with a value of "Yo". Log B, the variable "greeting" has a value of "Hey" because the "greeting" variable at line 86 has been reassgined a valuye of "Hey" on line 95. Log C, the variable "greeting" has a value of "Hey" because it's been reassigned a value of "Hey" on line 95. Log D is "Hello" because the "greeting" variable on line 83 is globally scoped and has not been reassigned.
+    // Log A, the variable "greeting" has a value of "Yo" because the "greeting" variable at line 89 is block scoped and declares a new variable "greeting", and the value of the variable "greeting" on 86 is functionally scoped  with a value of "Yo". Log B, the variable "greeting" has a value of "Hey" because the functionally scoped "greeting" variable at line 86 has been reassgined a value of "Hey" by line 95. Log C, the variable "greeting" has a value of "Hey" because it's been reassigned a value of "Hey" on line 95. Log D is "Hello" because the "greeting" variable on line 83 is globally scoped and has not been reassigned.
   },
 
   exerciseD() {
@@ -153,7 +153,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Log A is "hi" because the variable greeting is assigned a value of "hi" on line 124, is functionally scoped, and has not been reassigned. Log B is "welcome" because the variable "greeting" on line 124 has been reassigned a value of "welcome". Log C is "welcome" because the value of the variable "greeting" on line 124 was previously reassigned to "welcome". Log D is 'howdy' because the variable greeting on line 121 has a value of "howdy", is globally scoped, and has not been reassigned. 
+    // Log A is "hi" because the variable greeting is assigned a value of "hi" on line 124, is functionally scoped, and has not been reassigned. Log B is "welcome" because the functionally scoped variable "greeting" on line 124 has been reassigned a value of "welcome". Log C is "welcome" because the value of the variable "greeting" on line 124 was previously reassigned to "welcome". Log D is "howdy" because the variable greeting on line 121 has a value of "howdy", is globally scoped, and has not been reassigned. 
   },
 
   exerciseE() {
@@ -169,17 +169,17 @@ const scope = {
           let name = 'Brittany';
         }
 
-        // Log A: name is Nathaniel because the if statement checking the value of "name" reassigns the value of "name" to Nathaniel. It does not reassign the value again in the second if statement even though the length of "name" is greater than zero because the second if statement declares a new variable "name", it doesn't reassign the value of the variable "name" on line 163. 
+        // Log A: name 
       }
 
-      // Log B: name is still Nathaniel because the if statement on line 166 reassigns the value of "name" on line 163 to "Nathaniel".
+      // Log B: name 
     }
 
-    // Log C: name Brittany because we are now out of the function, so the variable "name" we're referring to is the variable on line 163, which has been assigned a value of "Brittany".
+    // Log C: name 
 
     sayName();
 
-    // Log D: name Brittany because we are now out of the function, so the variable "name" we're referring to is the variable on line 163, which has been assigned a value of "Brittany".
+    // Log D: name
 
     const result = [
       { C : 'Brittany' }, 
@@ -190,36 +190,36 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // The first log that the interpreter hits is log C, which gives the variable "name" a value of "Brittany" because the value was assigned during execution phase and has not been reassigned. The next log the interpreter hits is log A. For log A, "name" is "Nathaniel" because the if statement on line 65 reassigns the value of the functionally scoped variable "name" that was declared on line 164. It does not reassign the value again in the second if statement even though the length of "name" is greater than zero because the second if statement declares a new variable "name", it doesn't reassign the value of the functionally scoped variable "name" on line 163. For log B, "name" is still "Nathaniel" because the the value of the functionally scoped variable has been reassigned. For log D, the value of "name" is "Brittany" because we're out of the function and the globally scoped variable has not been reassigned. 
   },
 
   exerciseF() {
     var dog = 'Spot';
 
     function petDog() {
-      // Log A: dog Spot
+      // Log A: dog 
 
       if (dog === 'Spot') {
         let dog = 'Fluffy';
       }
 
       function rollOver() {
-        // Log B: dog Spot
+        // Log B: dog 
 
         dog = 'Biscuit';
 
-        // Log C: dog Biscuit
+        // Log C: dog 
 
       }
 
       rollOver();
 
-      // Log D: dog Biscuit
+      // Log D: dog 
     }
 
     petDog();
 
-    // Log E: dog Biscuit 
+    // Log E: dog  
 
     const result = [
       {'A' : 'Spot'},
@@ -243,11 +243,11 @@ const scope = {
         var fruit = 'mango';
 
         if (fruit) {
-          // Log A: Reference error because the if statement knows there will be a new variable declared, but because it's declared with const it's not hoisted. (Temporal Dead Zone.)
+          // Log A: fruit
           const fruit = 'strawberry';
         }
 
-        // Log B: fruit mango because we're still in the function. 
+        // Log B: fruit 
       }
 
       // Log C: fruit mango
@@ -266,7 +266,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A will throw a reference error because the log is executed above the declaration of the new variable "fruit", and because "fruit" is declared with const instead of var, its value is not hoisted to the top of the function. The interpreter sees that there's a variable "fruit", but it can't access its value yet. Log B is "mango" because the variable fruit declared on line 243 was assigned a value of "mango". We're out of the if statement for log C, but fruit is still "mango" because the variable was declared with var, meaning it's functionally scoped. Log D is "apple" because we're out of the function and the globally scoped variable fruit declared on line 238 has not been reassigned.
   },
 
   exerciseH() {
@@ -284,12 +284,12 @@ const scope = {
 
         const newNum = num;
 
-        // Log B: newNum 9 because fn2 doesn't return anything #4
+        // Log B: newNum 9 because fn2 doesn't return anything #4 (a little confused why this isn't 10)
       }
 
       newNum = num;
 
-      // Log C: newNum 4 #5
+      // Log C: newNum 4 #5 because it's being assigned the value of the functionally scoped num
     };
 
     const fn2 = function(num){
@@ -328,7 +328,7 @@ const scope = {
         // Log B: hunger 0 stays 0 the second time 
       }
 
-      // Log C: hunger 75 also changes to 55 2nd time
+      // Log C: hunger 75, also changes to 55 2nd time
     }
 
     eatSnack();
@@ -358,7 +358,7 @@ const scope = {
   exerciseJ() {
     let sandwich = 'ketchup sandwich';
 
-    // Log A: sandwich 'ketchup sandwich'
+    // Log A: #1 sandwich 'ketchup sandwich'
 
     const addChipotle = () => {
       // Log B: toppings is undefined because the label is hoisted by "var", but its value is not. 
@@ -373,7 +373,7 @@ const scope = {
 
     const addCheese = () => {
       let cheeseTopping = 'gouda';
-      // Log D: cheeseTopping 'gouda' 
+      // Log D: #2 cheeseTopping 'gouda' 
 
       const shesTheManReference = () => {
         amandaBynes = 'National Treasure';
@@ -387,7 +387,7 @@ const scope = {
 
     addChipotle();
     // Log E: sandwich 'not a mediocre sandwich'
-    // Log F: amandaBynes 'National Treasure'
+    // Log F: amandaBynes 'National Treasure' because the declaration defaults to var, which is hoisted into the global scope. 
 
     const result = [
     { A : 'ketchup sandwich'},
@@ -480,7 +480,7 @@ const scope = {
     first();
     second();
 
-    // Log D: num 6 because 477 is declaring a new variable, not reassigning the value of num on line 467.
+    // Log D: num 6 because 477 is declaring a new variable, not reassigning the value of the globally scoped num on line 467.
 
     const result = [
     { 'A' : 5 },
@@ -544,7 +544,7 @@ const scope = {
     var shoe = 'flipflop';
 
     function putOnShoe() {
-      // Log A: shoe flipflop
+      // Log A: shoe undefined because the log is above the variable declaration. Because the variable is declared with var, the interpreter knows it's a variable, but doesn't yet know its value. 
       var shoe = 'boot';
     }
     // Log B: shoe flipflop
@@ -596,13 +596,13 @@ const scope = {
     let wildKids = ['Antigone'];
 
     let myCrazyKidAntics = kid => {
-      // Log A: kid Pandora
+      // Log A: #1 kid is myKid, which is Pandora
       wildKids.push(kid);
-      // Log B: wildKids ['Antigone', 'Pandora']
+      // Log B: #2 wildKids ['Antigone', 'Pandora']
   
       let drawOnTheWall = () => {
         let myKid = 'Mandy';
-        // Log C: myKid 'Mandy'
+        // Log C: #3 myKid 'Mandy'
         return `That wild kid ${myKid}, drew on the wall!`;
       };
 
@@ -610,18 +610,24 @@ const scope = {
 
       let myAmazingKid = () => {
         let myKid = wildKids.shift();
-        // Log D: myKid 'Antigone'
+        // Log D: #4 myKid 'Antigone' because Pandora has been shifted out of the array. 
         return `That kid ${myKid}, is AMAZING!`;
       };
 
       myAmazingKid();
-      // Log E: myKid; Pandora
+      // Log E: #5 myKid; Pandora because we're out of the myAmazingKid function and referring to the globally scoped myKid on line 595. 
       return `All these kids are wild, especially, ${myKid}!`;
     };
 
-    myCrazyKidAntics(myKid);
+    myCrazyKidAntics(myKid); // argument is "Pandora", which is the value of myKid. 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+    { 'A' : 'Pandora' },
+    { 'B' : ['Antigone', 'Pandora']},
+    { 'C' : 'Mandy' },
+    { 'D' : 'Antigone' },
+    { 'E' : 'Pandora' }
+    ];
     return result;
 
     // Annotation:
@@ -648,7 +654,12 @@ const scope = {
     parentFunc();
     // Log D: myName RodyToyDaniels
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+    { 'A' : 'Rody'},
+    { 'B' : 'RodyToy'},
+    { 'C' : 'Tesla'},
+    { 'D' : 'RodyToyDaniels'}
+    ];
     return result;
 
     // Annotation:
